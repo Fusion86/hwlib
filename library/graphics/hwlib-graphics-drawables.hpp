@@ -5,7 +5,7 @@
 // Copyright : wouter@voti.nl 2017-2019
 //
 // Distributed under the Boost Software License, Version 1.0.
-// (See accompanying file LICENSE_1_0.txt or copy at 
+// (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 // ==========================================================================
@@ -40,7 +40,7 @@ public:
    ///
    /// If buffering is specified, the actual drawing can be delayed
    /// until flush() is called.
-   virtual void draw( window & w ) = 0;    
+   virtual void draw( window & w ) = 0;
 
 }; // class drawable
 
@@ -51,14 +51,15 @@ public:
 //
 // ==========================================================================
 
-/// a line object                 
+/// a line object
 class line : public drawable {
-private:   
+public:
    xy     end;
    color  ink;
-   
+
+private:
    static void swap( int_fast16_t & a, int_fast16_t & b ){
-      auto t = a; 
+      auto t = a;
       a = b;
       b = t;
    }
@@ -68,56 +69,56 @@ private:
    }
 
 public:
-   /// create a line object 
+   /// create a line object
    line( xy start, xy end, color ink = unspecified )
       : drawable{ start }, end{ end }, ink{ ink }
-   {}   
-   
-   void draw( window & w ) override { 
-       
+   {}
+
+   void draw( window & w ) override {
+
       int_fast16_t x0 = start.x;
       int_fast16_t y0 = start.y;
-      int_fast16_t x1 = end.x; 
+      int_fast16_t x1 = end.x;
       int_fast16_t y1 = end.y;
-                   
+
       // http://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
       // http://homepages.enterprise.net/murphy/thickline/index.html
-     
-      int_fast16_t Dx = x1 - x0; 
+
+      int_fast16_t Dx = x1 - x0;
       int_fast16_t Dy = y1 - y0;
-   
+
       int_fast16_t steep = (abs(Dy) >= abs(Dx));
-   
+
       if( steep ){
          swap( x0, y0 );
          swap( x1, y1 );
-      
+
          // recompute Dx, Dy after swap
          Dx = x1 - x0;
          Dy = y1 - y0;
       }
-   
+
       int_fast16_t xstep = 1;
       if( Dx < 0 ){
          xstep = -1;
          Dx = -Dx;
       }
-   
+
       int_fast16_t ystep = 1;
       if( Dy < 0 ){
-         ystep = -1;    
-         Dy = -Dy; 
+         ystep = -1;
+         Dy = -Dy;
       }
-      int_fast16_t TwoDy = 2*Dy; 
+      int_fast16_t TwoDy = 2*Dy;
       int_fast16_t TwoDyTwoDx = TwoDy - 2*Dx; // 2*Dy - 2*Dx
       int_fast16_t E = TwoDy - Dx; //2*Dy - Dx
       int_fast16_t y = y0;
-      int_fast16_t xDraw, yDraw, x;  
-      for( x = x0; x != x1; x += xstep ){    
-         if (steep) {     
+      int_fast16_t xDraw, yDraw, x;
+      for( x = x0; x != x1; x += xstep ){
+         if (steep) {
             xDraw = y;
             yDraw = x;
-         } else {     
+         } else {
             xDraw = x;
             yDraw = y;
          }
@@ -132,8 +133,8 @@ public:
          }
       }
    }
-   
-}; // class line   
+
+}; // class line
 
 
 // ==========================================================================
@@ -150,7 +151,7 @@ private:
 
 public:
 
-   rectangle( 
+   rectangle(
       const xy & start, const xy & end,
       const color & ink = unspecified
    ):
@@ -158,13 +159,13 @@ public:
    {}
 
    void draw( hwlib::window & w ){
-      line( 
+      line(
          xy( start.x, start.y ), xy( start.x,   end.y + 1 ), ink ).draw( w );
-      line( 
+      line(
          xy( end.x,   start.y ), xy( end.x,     end.y + 1 ), ink ).draw( w );
-      line( 
+      line(
          xy( start.x, start.y ), xy( end.x + 1, start.y   ), ink ).draw( w );
-      line( 
+      line(
          xy( start.x, end.y   ), xy( end.x + 1, end.y     ), ink ).draw( w );
    }
 
@@ -177,62 +178,62 @@ public:
 //
 // ==========================================================================
 
-/// a circle object                   
+/// a circle object
 class circle : public drawable {
-private:   
+private:
    uint_fast16_t  radius;
    color          ink;
-   
+
 public:
-   /// create a circle object 
-   circle( 
-      xy start, 
-      uint_fast16_t radius, 
+   /// create a circle object
+   circle(
+      xy start,
+      uint_fast16_t radius,
       color ink = unspecified
    )
       : drawable{ start }, radius{ radius }, ink{ ink }
-   {}     
-   
-   void draw( window & w ) override { 
+   {}
 
-      // don't draw anything when the size would be 0 
+   void draw( window & w ) override {
+
+      // don't draw anything when the size would be 0
       if( radius < 1 ){
-         return;       
+         return;
       }
-   
+
       // http://en.wikipedia.org/wiki/Midpoint_circle_algorithm
-   
+
       int_fast16_t fx = 1 - radius;
       int_fast16_t ddFx = 1;
       int_fast16_t ddFy = -2 * radius;
       int_fast16_t x = 0;
       int_fast16_t y = radius;
-    
+
       // top and bottom
       w.write( start + xy( 0, + radius ), ink );
       w.write( start + xy( 0, - radius ), ink );
 
-      // left and right 
+      // left and right
       w.write( start + xy( + radius, 0 ), ink );
       w.write( start + xy( - radius, 0 ), ink );
-         
+
       // filled circle
       if(0){
-   
+
          // top and bottom
          w.write( start + xy( 0, + radius ), ink );
          w.write( start + xy( 0, - radius ), ink );
 
          // left and right
-         line(  
-              start - xy( radius, 0 ), 
-              start + xy( radius, 0 ), 
-              ink 
+         line(
+              start - xy( radius, 0 ),
+              start + xy( radius, 0 ),
+              ink
           ).draw( w );
-      } 
-    
+      }
+
       while( x < y ){
-      
+
          // calculate next outer circle point
          if( fx >= 0 ){
            y--;
@@ -241,8 +242,8 @@ public:
          }
          x++;
          ddFx += 2;
-         fx += ddFx;   
-                    
+         fx += ddFx;
+
          w.write( start + xy( + x, + y ), ink );
          w.write( start + xy( - x, + y ), ink );
          w.write( start + xy( + x, - y ), ink );
@@ -251,29 +252,29 @@ public:
          w.write( start + xy( - y, + x ), ink );
          w.write( start + xy( + y, - x ), ink );
          w.write( start + xy( - y, - x ), ink );
-            
+
          // filled circle
          if(0) if( ! ink.is_transparent()  ){
-            line( 
-               start + xy( -x,  y ), 
-               start + xy(  x,  y ), 
+            line(
+               start + xy( -x,  y ),
+               start + xy(  x,  y ),
                ink ).draw( w );
-            line( 
-               start + xy( -x, -y ), 
-               start + xy(  x, -y ), 
+            line(
+               start + xy( -x, -y ),
+               start + xy(  x, -y ),
                ink ).draw( w );
-            line( 
-               start + xy( -y,  x ), 
-               start + xy(  y,  x ), 
+            line(
+               start + xy( -y,  x ),
+               start + xy(  y,  x ),
                ink ).draw( w );
-            line( 
-               start + xy( -y, -x ), 
-               start + xy(  y, -x ), 
+            line(
+               start + xy( -y, -x ),
+               start + xy(  y, -x ),
                ink ).draw( w );
          }
       }
-   }   
-    
+   }
+
 }; // class circle
 
 }; // namespace hwlib
