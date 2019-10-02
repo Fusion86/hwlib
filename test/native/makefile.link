@@ -1,6 +1,6 @@
 #############################################################################
 #
-# makefile.link
+# Makefile.link
 #
 # common settings for a native project
 #
@@ -21,4 +21,4 @@ PROJECT_CPP_FLAGS += -fexceptions
 # defer to the next-level makefile
 RELATIVE          ?= .
 RELATIVE          := $(RELATIVE)/..
-include           $(RELATIVE)/makefile.link
+include           $(RELATIVE)/Makefile.link

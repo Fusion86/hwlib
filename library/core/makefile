@@ -27,7 +27,7 @@ MSG += Make one of the project source files your current editor file.
 error:
 	$(error $(MSG) )   			
    
-# defer to the next-level makefile.link
+# defer to the next-level Makefile.link
 RELATIVE          ?= .
 RELATIVE          := $(RELATIVE)/..
 include           $(RELATIVE)/Makefile.link

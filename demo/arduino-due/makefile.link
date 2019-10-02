@@ -1,6 +1,6 @@
 #############################################################################
 #
-# makefile.link
+# Makefile.link
 #
 # common settings and uplink for ARduino Due projects
 #
@@ -17,7 +17,7 @@ TARGET            ?= arduino_due
 SERIAL_PORT       ?= COM2
 CONSOLE_BAUDRATE  ?= 2400
 
-# defer to the next-level makefile.link
+# defer to the next-level Makefile.link
 RELATIVE          ?= .
 RELATIVE          := $(RELATIVE)/..
-include           $(RELATIVE)/makefile.link
+include           $(RELATIVE)/Makefile.link

@@ -22,16 +22,16 @@ endif
 .PHONY: renumber clean build run error notab
 
 renumber:
-	$(MAKE) -f makefile.link renumber-subdirs
+	$(MAKE) -f Makefile.link renumber-subdirs
 
 build:
-	$(MAKE) -f makefile.link build-subdirs
+	$(MAKE) -f Makefile.link build-subdirs
    
 clean:
-	$(MAKE) -f makefile.link clean-subdirs
+	$(MAKE) -f Makefile.link clean-subdirs
    
 notab:
-	$(MAKE) -f makefile.link notab-subdirs
+	$(MAKE) -f Makefile.link notab-subdirs
    
  
 # user error handling   

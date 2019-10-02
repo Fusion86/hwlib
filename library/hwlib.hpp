@@ -14,7 +14,7 @@
 // include this hwlib.hpp file.
 
 // The bmptk build system will define the HWLIB_TARGET_* macro
-// base on the TARGET specified in the makefile.
+// base on the TARGET specified in the Makefile.
 
 #ifndef HWLIB_H
 #define HWLIB_H

@@ -24,4 +24,4 @@ TARGET            ?= arduino_uno
 # set RELATIVE to the next higher directory 
 # and defer to the appropriate Makefile.* there
 RELATIVE := ..
-include $(RELATIVE)/makefile.link
+include $(RELATIVE)/Makefile.link

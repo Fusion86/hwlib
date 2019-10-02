@@ -7,9 +7,9 @@ two      : test whether an application can have two source files
            (weak symbols etc.)
 separate : test whether each hwlib .hpp file can be included on its own
 
-The makefile.link is included by the makefiles in the subdirectories;
+The Makefile.link is included by the makefiles in the subdirectories;
 it sets the target-specific things and defers to the
-makefile.link in the parent directory.
+Makefile.link in the parent directory.
 
 (c) Wouter van Ooijen (wouter@voti.nl) 2017
 

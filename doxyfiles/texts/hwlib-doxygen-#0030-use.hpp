@@ -26,17 +26,17 @@
 /// \ref targets "targets ".
 ///
 /// When the bmptk build system is used, the HWLIB_TARGET_* passed
-/// is determined by the TARGET setting in the bmptk makefile.
+/// is determined by the TARGET setting in the bmptk Makefile.
 ///
 /// \snippet "db103\blink\makefile" [Doxygen makefile example]
 ///
-/// The sources within the library use a makefile.link file
+/// The sources within the library use a Makefile.link file
 /// in each subdirectory, which passes 'control' up to the next-higher
 /// directory.
 ///
-/// \snippet "db103\makefile.link"  [Doxygen makefile example]
+/// \snippet "db103\Makefile.link"  [Doxygen makefile example]
 ///
-/// The makefile.link in the root directory includes the makefile.custom
-/// (if one exsts) or the makefile.local, which set things like
+/// The Makefile.link in the root directory includes the Makefile.custom
+/// (if one exsts) or the Makefile.local, which set things like
 /// the location of the bmptk and catch2 files.
 /// 

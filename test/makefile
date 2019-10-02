@@ -29,7 +29,7 @@ endif
 # include the bmptk makefile, and clean this directory
 
 clean: $(CLEANDIRS)
-	$(MAKE) -f makefile.link clean
+	$(MAKE) -f Makefile.link clean
    
 # defer to the subdirectories
 

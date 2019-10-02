@@ -26,24 +26,24 @@
 /// Each project is in a separate directory and has its own bmptk makefile
 /// that builds that project. 
 /// This project makefile specifies project-specific properties, 
-/// sets the symbol RELATIVE, and includes the makefile.link 
+/// sets the symbol RELATIVE, and includes the Makefile.link 
 /// in the next higher directory, which can specify things
 /// that are common to the projects in its subdirectories, 
 /// updates RELATIVE to RELATIVE\.., and includes the
-/// makefile.link in the next higher directory, up to the one in the main
-/// directory of the library, which includes a makefile.custom (if present)
-/// or else the makefile.local. It also adds some global specifications,
-/// and finally includes the bmptk makefile.inc.
+/// Makefile.link in the next higher directory, up to the one in the main
+/// directory of the library, which includes a Makefile.custom (if present)
+/// or else the Makefile.local. It also adds some global specifications,
+/// and finally includes the bmptk Makefile.inc.
 /// 
 /// To build everything in a directory and below, run *bmptk-make build*.
 /// 
 /// Each directory that contains subdirectories that contain projects has 
 /// a makefile that responds to this command by re-issuing it in all its
 /// subdirectories. To do this, it also uses bmptk, so it uses
-/// 'bmptk-make -f makefile.link <target>' to include bmptk.inc, using the
+/// 'bmptk-make -f Makefile.link <target>' to include bmptk.inc, using the
 /// above mechanism.
 /// 
-/// De makefile.inc is included by the bmptk makefile.inc to update the bmptk
+/// De Makefile.inc is included by the bmptk Makefile.inc to update the bmptk
 /// SEARCH, HEADERS and SOURCES with the itmes from the hwlib library.
 /// 
 /// Each directory that contains project sub-directories has a file 

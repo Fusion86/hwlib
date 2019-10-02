@@ -96,12 +96,12 @@ HEADERS           += targets/hwlib-native-sfml.hpp
 HEADERS           += targets/hwlib-none.hpp
 
 RELATIVE ?= $(BMPTK)/..
-ifneq ($(wildcard $(HWLIB)/makefile.custom),)
-   include $(HWLIB)/makefile.custom
-else ifneq ($(wildcard $(HWLIB)/../makefile.custom),)
-   include $(HWLIB)/../makefile.custom
+ifneq ($(wildcard $(HWLIB)/Makefile.custom),)
+   include $(HWLIB)/Makefile.custom
+else ifneq ($(wildcard $(HWLIB)/../Makefile.custom),)
+   include $(HWLIB)/../Makefile.custom
 else 
-   include $(HWLIB)/makefile.local
+   include $(HWLIB)/Makefile.local
 endif
 
 # add Catch

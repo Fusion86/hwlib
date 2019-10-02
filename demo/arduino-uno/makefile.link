@@ -1,6 +1,6 @@
 #############################################################################
 #
-# makefile.link
+# Makefile.link
 #
 # common settings and uplink for ARduino Due projects
 #
@@ -24,4 +24,4 @@ endif
 # defer to the next-level makefile
 RELATIVE          ?= .
 RELATIVE          := $(RELATIVE)/..
-include           $(RELATIVE)/makefile.link
+include           $(RELATIVE)/Makefile.link

@@ -1,6 +1,6 @@
 #############################################################################
 #
-# makefile.link
+# Makefile.link
 #
 # common settings and uplink for DB103 (LPC1114) projects
 #
@@ -21,4 +21,4 @@ CONSOLE_BAUDRATE  := 2400
 RELATIVE          ?= .
 RELATIVE          := $(RELATIVE)/..
 $(info RELATIVE=$(RELATIVE) )
-include           $(RELATIVE)/makefile.link
+include           $(RELATIVE)/Makefile.link

@@ -16,5 +16,5 @@ RELATIVE          ?= .
 # get the paths 
 HWLIB             := $(RELATIVE)
 
-# defer to the makefile.inc
+# defer to the Makefile.inc
 include           $(HWLIB)/Makefile.inc
