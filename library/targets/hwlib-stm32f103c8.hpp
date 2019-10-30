@@ -591,7 +591,7 @@ void wait_ns_busy( int_fast32_t n );
 void wait_us_busy( int_fast32_t n );
 void wait_ms_busy( int_fast32_t n );
 
-#define HWLIB_USE_HW_UART 
+//#define HWLIB_USE_HW_UART 
 #ifdef HWLIB_USE_HW_UART
 
 void HWLIB_WEAK uart_putc( char c ){
